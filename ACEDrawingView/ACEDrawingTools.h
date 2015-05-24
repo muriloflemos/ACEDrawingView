@@ -38,7 +38,6 @@
 #define ACE_AUTORELEASE(exp) [(exp) autorelease]
 #endif
 
-
 @protocol ACEDrawingTool <NSObject>
 
 @property (nonatomic, strong) UIColor *lineColor;
@@ -96,5 +95,13 @@
 @interface ACEDrawingEllipseTool : NSObject<ACEDrawingTool>
 
 @property (nonatomic, assign) BOOL fill;
+
+@end
+
+#pragma mark -
+
+@interface ACEDrawingStickerToll : NSObject<ACEDrawingTool>
+
+@property (strong, nonatomic) UIImage *image;
 
 @end

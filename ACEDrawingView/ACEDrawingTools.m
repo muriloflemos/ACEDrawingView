@@ -372,3 +372,34 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 @end
+
+#pragma mark -
+
+@interface ACEDrawingStickerToll()
+
+@property (nonatomic, assign) CGPoint firstPoint;
+@property (nonatomic, assign) CGPoint lastPoint;
+
+@end
+
+@implementation ACEDrawingStickerToll
+
+@synthesize lineColor = _lineColor;
+@synthesize lineAlpha = _lineAlpha;
+@synthesize lineWidth = _lineWidth;
+
+- (void)setInitialPoint:(CGPoint)firstPoint {
+    self.firstPoint = firstPoint;
+}
+
+- (void)moveFromPoint:(CGPoint)startPoint toPoint:(CGPoint)endPoint {
+    self.lastPoint = endPoint;
+}
+
+- (void)draw {
+    // draw the image
+    CGRect rectToFill = CGRectMake(self.firstPoint.x, self.firstPoint.y, self.lastPoint.x - self.firstPoint.x, self.lastPoint.y - self.firstPoint.y);
+    [self.image drawInRect:rectToFill];
+}
+
+@end

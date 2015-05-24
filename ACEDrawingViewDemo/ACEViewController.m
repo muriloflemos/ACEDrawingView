@@ -154,6 +154,11 @@
                 case 8:
                     self.drawingView.drawTool = ACEDrawingToolTypeMultilineText;
                     break;
+                    
+                case 9:
+                    self.drawingView.drawTool = ACEDrawingToolTypeSticker;
+                    [self.drawingView setSticker:[UIImage imageNamed:@"homer-simpson.jpg"]];
+                    break;
             }
             
             // if eraser, disable color and alpha selection
@@ -185,7 +190,7 @@
                                                     otherButtonTitles:@"Pen", @"Line",
                                   @"Rect (Stroke)", @"Rect (Fill)",
                                   @"Ellipse (Stroke)", @"Ellipse (Fill)",
-                                  @"Eraser", @"Text", @"Text (Multiline)",
+                                  @"Eraser", @"Text", @"Text (Multiline)", @"Sticker",
                                   nil];
     
     [actionSheet setTag:kActionSheetTool];

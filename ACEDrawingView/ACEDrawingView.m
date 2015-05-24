@@ -206,6 +206,13 @@
         {
             return ACE_AUTORELEASE([ACEDrawingEraserTool new]);
         }
+            
+        case ACEDrawingToolTypeSticker:
+        {
+            ACEDrawingStickerToll *tool = ACE_AUTORELEASE([ACEDrawingStickerToll new]);
+            tool.image = self.sticker;
+            return tool;
+        }
     }
 }
 
@@ -585,6 +592,5 @@
     [super dealloc];
 #endif
 }
-
 
 @end

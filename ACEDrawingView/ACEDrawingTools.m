@@ -375,14 +375,14 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 #pragma mark -
 
-@interface ACEDrawingStickerToll()
+@interface ACEDrawingImageToll()
 
 @property (nonatomic, assign) CGPoint firstPoint;
 @property (nonatomic, assign) CGPoint lastPoint;
 
 @end
 
-@implementation ACEDrawingStickerToll
+@implementation ACEDrawingImageToll
 
 @synthesize lineColor = _lineColor;
 @synthesize lineAlpha = _lineAlpha;
@@ -397,8 +397,30 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 - (void)draw {
-    // draw the image
-    CGRect rectToFill = CGRectMake(self.firstPoint.x, self.firstPoint.y, self.lastPoint.x - self.firstPoint.x, self.lastPoint.y - self.firstPoint.y);
+    CGSize imageSize = self.image.size;
+    
+    CGFloat x = self.firstPoint.x;
+    CGFloat y = self.firstPoint.y;
+    CGFloat width = self.lastPoint.x - self.firstPoint.x;
+    CGFloat height = self.lastPoint.y - self.firstPoint.y;
+    
+    if (self.lastPoint.x < self.firstPoint.x) {
+        x = self.lastPoint.x;
+        width = self.firstPoint.x - self.lastPoint.x;
+    }
+    
+    if (self.lastPoint.y < self.firstPoint.y) {
+        y = self.lastPoint.y;
+        height = self.firstPoint.y - self.lastPoint.y;
+    }
+    
+    if (width > height) {
+        height = (width * imageSize.height) / imageSize.width;
+    } else {
+        width = (height * imageSize.width) / imageSize.height;
+    }
+    
+    CGRect rectToFill = CGRectMake(x, y, width, height);
     [self.image drawInRect:rectToFill];
 }
 

@@ -100,7 +100,7 @@
 
 #pragma mark -
 
-@interface ACEDrawingStickerToll : NSObject<ACEDrawingTool>
+@interface ACEDrawingImageToll : NSObject<ACEDrawingTool>
 
 @property (strong, nonatomic) UIImage *image;
 

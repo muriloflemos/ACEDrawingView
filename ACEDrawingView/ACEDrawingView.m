@@ -48,6 +48,8 @@
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, assign) CGFloat originalFrameYPos;
+@property (nonatomic, strong) UIImage *drawingImage;
+
 @end
 
 #pragma mark -
@@ -207,15 +209,25 @@
             return ACE_AUTORELEASE([ACEDrawingEraserTool new]);
         }
             
-        case ACEDrawingToolTypeSticker:
+        case ACEDrawingToolTypeImage:
         {
-            ACEDrawingStickerToll *tool = ACE_AUTORELEASE([ACEDrawingStickerToll new]);
-            tool.image = self.sticker;
+            ACEDrawingImageToll *tool = ACE_AUTORELEASE([ACEDrawingImageToll new]);
+            tool.image = self.drawingImage;
             return tool;
         }
     }
 }
 
+
+#pragma mark - Drawing image
+
+- (void)setDrawingImage:(UIImage *)drawingImage {
+    _drawingImage = drawingImage;
+    
+    if (self.drawTool == ACEDrawingToolTypeImage) {
+        [(ACEDrawingImageToll *)self.currentTool setImage:drawingImage];
+    }
+}
 
 #pragma mark - Touch Methods
 

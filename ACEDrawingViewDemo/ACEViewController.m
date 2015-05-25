@@ -156,8 +156,8 @@
                     break;
                     
                 case 9:
-                    self.drawingView.drawTool = ACEDrawingToolTypeSticker;
-                    [self.drawingView setSticker:[UIImage imageNamed:@"homer-simpson.jpg"]];
+                    self.drawingView.drawTool = ACEDrawingToolTypeImage;
+                    [self.drawingView setDrawingImage:[UIImage imageNamed:@"homer-simpson.jpg"]];
                     break;
             }
             
@@ -190,7 +190,7 @@
                                                     otherButtonTitles:@"Pen", @"Line",
                                   @"Rect (Stroke)", @"Rect (Fill)",
                                   @"Ellipse (Stroke)", @"Ellipse (Fill)",
-                                  @"Eraser", @"Text", @"Text (Multiline)", @"Sticker",
+                                  @"Eraser", @"Text", @"Text (Multiline)", @"Image",
                                   nil];
     
     [actionSheet setTag:kActionSheetTool];

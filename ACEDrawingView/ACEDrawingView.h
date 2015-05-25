@@ -37,7 +37,7 @@ typedef enum {
     ACEDrawingToolTypeEraser,
     ACEDrawingToolTypeText,
     ACEDrawingToolTypeMultilineText,
-    ACEDrawingToolTypeSticker
+    ACEDrawingToolTypeImage
 } ACEDrawingToolType;
 
 @protocol ACEDrawingViewDelegate, ACEDrawingTool;
@@ -51,7 +51,6 @@ typedef enum {
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) CGFloat lineAlpha;
-@property (nonatomic, strong) UIImage *sticker;
 
 // get the current drawing
 @property (nonatomic, strong, readonly) UIImage *image;
@@ -71,6 +70,9 @@ typedef enum {
 
 - (BOOL)canRedo;
 - (void)redoLatestStep;
+
+// Drawing image
+- (void)setDrawingImage:(UIImage *)drawingImage;
 
 @end
 

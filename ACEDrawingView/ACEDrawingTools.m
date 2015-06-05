@@ -375,14 +375,14 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 
 #pragma mark -
 
-@interface ACEDrawingImageToll()
+@interface ACEDrawingImageTool()
 
 @property (nonatomic, assign) CGPoint firstPoint;
 @property (nonatomic, assign) CGPoint lastPoint;
 
 @end
 
-@implementation ACEDrawingImageToll
+@implementation ACEDrawingImageTool
 
 @synthesize lineColor = _lineColor;
 @synthesize lineAlpha = _lineAlpha;

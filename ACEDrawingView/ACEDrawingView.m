@@ -211,7 +211,7 @@
             
         case ACEDrawingToolTypeImage:
         {
-            ACEDrawingImageToll *tool = ACE_AUTORELEASE([ACEDrawingImageToll new]);
+            ACEDrawingImageTool *tool = ACE_AUTORELEASE([ACEDrawingImageTool new]);
             tool.image = self.drawingImage;
             return tool;
         }
@@ -225,7 +225,7 @@
     _drawingImage = drawingImage;
     
     if (self.drawTool == ACEDrawingToolTypeImage) {
-        [(ACEDrawingImageToll *)self.currentTool setImage:drawingImage];
+        [(ACEDrawingImageTool *)self.currentTool setImage:drawingImage];
     }
 }
 

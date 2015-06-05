@@ -73,6 +73,10 @@ typedef enum {
 
 // Drawing image
 - (void)setDrawingImage:(UIImage *)drawingImage;
+- (void)setDrawingImage:(UIImage *)drawingImage withInitialPoint:(CGPoint)initialPoint andFinalPoint:(CGPoint)finalPoint;
+
+// Finishing Drawing
+- (void)finishDrawing;
 
 @end
 

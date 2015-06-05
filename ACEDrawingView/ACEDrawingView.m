@@ -229,6 +229,20 @@
     }
 }
 
+- (void)setDrawingImage:(UIImage *)drawingImage withInitialPoint:(CGPoint)initialPoint andFinalPoint:(CGPoint)finalPoint {
+    _drawingImage = drawingImage;
+    
+    if (self.drawTool == ACEDrawingToolTypeImage) {
+        if (self.currentTool == nil) {
+            self.currentTool = [self toolWithCurrentSettings];
+        }
+        [(ACEDrawingImageTool *)self.currentTool setImage:drawingImage];
+        [self.currentTool setInitialPoint:initialPoint];
+        [self.currentTool moveFromPoint:initialPoint toPoint:finalPoint];
+        [self.pathArray addObject:self.currentTool];
+    }
+}
+
 #pragma mark - Touch Methods
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -253,6 +267,8 @@
         [self initializeTextBox:currentPoint WithMultiline:NO];
     } else if([self.currentTool class] == [ACEDrawingMultilineTextTool class]) {
         [self initializeTextBox:currentPoint WithMultiline:YES];
+    } else if ([self.currentTool class] == [ACEDrawingImageTool class]) {
+        [self.pathArray addObject:self.currentTool];
     } else {
         [self.pathArray addObject:self.currentTool];
         
@@ -288,6 +304,9 @@
     else if ([self.currentTool isKindOfClass:[ACEDrawingTextTool class]]) {
         [self resizeTextViewFrame: currentPoint];
     }
+    else if ([self.currentTool isKindOfClass:[ACEDrawingImageTool class]]) {
+        [self setNeedsDisplay];
+    }
     else {
         [self.currentTool moveFromPoint:previousPoint1 toPoint:currentPoint];
         [self setNeedsDisplay];
@@ -302,6 +321,9 @@
     
     if ([self.currentTool isKindOfClass:[ACEDrawingTextTool class]]) {
         [self startTextEntry];
+    }
+    else if ([self.currentTool isKindOfClass:[ACEDrawingImageTool class]]) {
+        [self finishDrawing];
     }
     else {
         [self finishDrawing];

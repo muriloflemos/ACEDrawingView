@@ -267,11 +267,8 @@
         [self initializeTextBox:currentPoint WithMultiline:NO];
     } else if([self.currentTool class] == [ACEDrawingMultilineTextTool class]) {
         [self initializeTextBox:currentPoint WithMultiline:YES];
-    } else if ([self.currentTool class] == [ACEDrawingImageTool class]) {
+    } else if ([self.currentTool class] != [ACEDrawingImageTool class]) {
         [self.pathArray addObject:self.currentTool];
-    } else {
-        [self.pathArray addObject:self.currentTool];
-        
         [self.currentTool setInitialPoint:currentPoint];
     }
     
